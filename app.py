@@ -27,14 +27,24 @@ RETURN s.name AS student, collect(c.name) AS courses
 ORDER BY student
 """
 
+TEACHER_QUERY = """
+MATCH (t:Teacher)-[:TEACHES]->(c:Course)<-[:ENROLLED_IN]-(s:Student)
+RETURN t.name AS teacher, c.name AS course, collect(s.name) AS students
+"""
+
 
 def main():
     with GraphDatabase.driver(URI, auth=AUTH) as driver:
         driver.verify_connectivity()
         driver.execute_query(SEED)  # MERGE = safe to run many times
+
         records, _, _ = driver.execute_query(QUERY)
         for r in records:
             print(f"{r['student']}: {', '.join(r['courses'])}")
+
+        records, _, _ = driver.execute_query(TEACHER_QUERY)
+        for r in records:
+            print(f"{r['teacher']} teaches {r['course']} to {', '.join(r['students'])}")
 
 
 if __name__ == "__main__":

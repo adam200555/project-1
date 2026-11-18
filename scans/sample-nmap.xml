@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- SAMPLE data written by hand to test the importer. Replace it with your real scan. -->
+<nmaprun scanner="nmap" args="nmap -sV -oX sample-nmap.xml 192.168.56.0/24" start="1763400000">
+  <host>
+    <status state="up"/>
+    <address addr="192.168.56.101" addrtype="ipv4"/>
+    <hostnames><hostname name="metasploitable" type="user"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="21"><state state="open"/><service name="ftp" product="vsftpd" version="2.3.4"/></port>
+      <port protocol="tcp" portid="22"><state state="open"/><service name="ssh" product="OpenSSH" version="4.7p1"/></port>
+      <port protocol="tcp" portid="80"><state state="open"/><service name="http" product="Apache httpd" version="2.2.8"/></port>
+      <port protocol="tcp" portid="3306"><state state="open"/><service name="mysql" product="MySQL" version="5.0.51a"/></port>
+      <port protocol="tcp" portid="23"><state state="closed"/><service name="telnet"/></port>
+    </ports>
+    <os><osmatch name="Linux 2.6.X" accuracy="95"/></os>
+  </host>
+  <host>
+    <status state="up"/>
+    <address addr="192.168.56.102" addrtype="ipv4"/>
+    <ports>
+      <port protocol="tcp" portid="22"><state state="open"/><service name="ssh" product="OpenSSH" version="4.7p1"/></port>
+      <port protocol="tcp" portid="3000"><state state="open"/><service name="http"/></port>
+    </ports>
+  </host>
+  <host>
+    <status state="down"/>
+    <address addr="192.168.56.103" addrtype="ipv4"/>
+  </host>
+</nmaprun>
